@@ -1,0 +1,19 @@
+.btn {
+	border: 1px solid red;
+	border-radius: 5px;
+	font-size: $font-size;
+}
+
+.klops {
+	padding: 0;
+	border-right: 12px;
+	font-emphasize-style: accent;
+}
+
+.klops::placeholder {
+  color: rgba(#FF445D, 0.8); //usage of HexRGBA
+} 
+
+h1 {
+	color: red;
+}
