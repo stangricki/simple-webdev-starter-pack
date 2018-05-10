@@ -1,12 +1,14 @@
-// require('./gulp/tasks/watch');
-
 const gulp = require('gulp'),
 	  sass = require('gulp-sass'),
 	  postcss = require('gulp-postcss'),
 	  autoprefixer = require('autoprefixer'),
 	  hexrgba = require('postcss-hexrgba'),
 	  watch = require('gulp-watch'),
+	  del = require('del'),
+	  rev = require('gulp-rev'),
+	  uglify = require('gulp-uglify'),
 	  cssnano = require('gulp-cssnano'),
+	  usemin = require('gulp-usemin'),
 	  browserSync = require('browser-sync').create();
 
 /* PATHS */
@@ -15,13 +17,13 @@ const STYLES_DEV_SASS_DIR = './app/assets/scss/**/*.scss',
 	  STYLES_TEMP_CSS_DIR = './app/temp/styles/',
 	  INDEX_HTML_FILE = './app/index.html';
 
-/****************DEFAULT*******************/
+/**************** DEFAULT *******************/
 gulp.task('default', function(){
 	console.log("Default task started!")
 })
 
 
-/****************STYLES*******************/
+/**************** STYLES *******************/
 gulp.task('styles', function(){
 	gulp.src(STYLES_DEV_SASS_DIR)
 		.pipe(sass())
@@ -30,11 +32,10 @@ gulp.task('styles', function(){
 			console.log(errorInfo.toString());
 			this.emit('end')
 		})
-		 // .pipe(cssnano()) // uncomment to minify CSS file
 		.pipe(gulp.dest(STYLES_TEMP_CSS_DIR))
 })
 
-/****************WATCH*******************/
+/**************** WATCH *******************/
 gulp.task('watch', function(){
 
 	browserSync.init({
@@ -56,3 +57,5 @@ gulp.task('watch', function(){
 		browserSync.reload();
 	})
 })
+
+/**************** BUILD *******************/
